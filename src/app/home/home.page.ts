@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ContactService } from './../contact.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
@@ -7,18 +8,17 @@ import { NavController } from '@ionic/angular';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-  contacts = [
-    {name:'Directrice', phone:' 06.00.66.00.66'}
-    ,{name:'Assistante', phone:' 06.00.66.00.66'}
-    ,{name:'Designeur', phone:' 06.00.66.00.66'}
+export class HomePage implements OnInit{
+  contacts:any;
 
-  ]
-
-  constructor(private router:Router) {}
+  constructor(private router:Router, private contactService:ContactService) {}
   showDetail(contact){
-    this.router.navigate(['detail'],contact);
+    this.router.navigate(['detail'],{state: contact});
 
+  }
+
+  ngOnInit(){
+    this.contacts = this.contactService.getContacts();
   }
 
 }

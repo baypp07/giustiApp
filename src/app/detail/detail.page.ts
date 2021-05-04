@@ -8,14 +8,23 @@ import { NavParams } from '@ionic/angular';
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
-contact: [];
-  constructor(private activatedRoute: ActivatedRoute) {
-    let data = this.activatedRoute.params.subscribe((contact) => {
-      console.log('Contact: ', contact)
-    })
-   }
+  name:string;
+  phone:string;
+
+  // constructor(public navParams: NavParams) {
+  // let data = this.navParams.data;
+  // console.log(data);
+  
+  constructor(private route: ActivatedRoute){
+
+
+    }
+  
 
   ngOnInit() {
+    this.phone = this.route.snapshot.paramMap.get('phone');
+    this.name = this.route.snapshot.paramMap.get('name');
+    console.log(this.phone);
    
 
   }
